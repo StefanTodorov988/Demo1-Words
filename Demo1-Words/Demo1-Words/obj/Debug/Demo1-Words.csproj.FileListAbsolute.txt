@@ -1,0 +1,14 @@
+C:\Users\Stefan\Desktop\Demo1-Words\Demo1-Words\bin\Debug\Demo1-Words.exe.config
+C:\Users\Stefan\Desktop\Demo1-Words\Demo1-Words\bin\Debug\Demo1-Words.exe
+C:\Users\Stefan\Desktop\Demo1-Words\Demo1-Words\bin\Debug\Demo1-Words.pdb
+C:\Users\Stefan\Desktop\Demo1-Words\Demo1-Words\obj\Debug\Demo1-Words.csprojResolveAssemblyReference.cache
+C:\Users\Stefan\Desktop\Demo1-Words\Demo1-Words\obj\Debug\Demo1-Words.csproj.CoreCompileInputs.cache
+C:\Users\Stefan\Desktop\Demo1-Words\Demo1-Words\obj\Debug\Demo1-Words.exe
+C:\Users\Stefan\Desktop\Demo1-Words\Demo1-Words\obj\Debug\Demo1-Words.pdb
+C:\Users\Stefan\Desktop\asd\Demo1-Words\Demo1-Words\bin\Debug\Demo1-Words.exe.config
+C:\Users\Stefan\Desktop\asd\Demo1-Words\Demo1-Words\bin\Debug\Demo1-Words.exe
+C:\Users\Stefan\Desktop\asd\Demo1-Words\Demo1-Words\bin\Debug\Demo1-Words.pdb
+C:\Users\Stefan\Desktop\asd\Demo1-Words\Demo1-Words\obj\Debug\Demo1-Words.csprojResolveAssemblyReference.cache
+C:\Users\Stefan\Desktop\asd\Demo1-Words\Demo1-Words\obj\Debug\Demo1-Words.csproj.CoreCompileInputs.cache
+C:\Users\Stefan\Desktop\asd\Demo1-Words\Demo1-Words\obj\Debug\Demo1-Words.exe
+C:\Users\Stefan\Desktop\asd\Demo1-Words\Demo1-Words\obj\Debug\Demo1-Words.pdb
