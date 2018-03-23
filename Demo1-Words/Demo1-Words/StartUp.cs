@@ -8,7 +8,7 @@ namespace Demo1_Words
     class StartUp
     {
         public static List<string> allWords;
-        public static Trie trieOfAllWords= new Trie();
+        public static Trie trieOfAllWords = new Trie();
         public const int CONSOLE_HEIGH = 20;
         public const int CONSOLE_WIDHT = 70;
         public const int RANGE_OF_WORD_OF_3CHARACTERS = 1007;
@@ -22,13 +22,31 @@ namespace Demo1_Words
         public const int RANGE_OF_WORD_OF_10_PLUS_CHARACTERS = 340728;
         static void Main(string[] args)
         {
-            allWords = File.ReadAllLines(@"C:\Users\Stefan\Desktop\Project\Demo1-Words\Demo1-Words\Demo1-Words\resource\words.txt").ToList();
+            allWords = File.ReadAllLines(@"C:\Users\Stefan\Desktop\Demo1-Words\Demo1-Words\Demo1-Words\resource\words.txt").ToList();
             allWords = allWords.OrderBy(x => x.Length).ToList();
-            allWords.ForEach(x=> trieOfAllWords.insert(x));
-            Console.WriteLine(trieOfAllWords.search("constants"));
-            Console.WriteLine(givingRandomWordWithNLenght(11));
+            allWords.ForEach(x => trieOfAllWords.insert(x));
+            //Console.WriteLine(trieOfAllWords.search("boom"));
+            //Console.WriteLine(givingRandomWordWithNLenght(11));
+            findingSoution("oba");
         }
 
+        public static string findingSoution(string characters)
+        {
+            var allPermutations = characters.Select(x => x.ToString());
+            int size = characters.Length;
+            for (int i = 0; i < size - 1; i++)
+                allPermutations = allPermutations.SelectMany(x => characters, (x, y) => x + y);
+
+            foreach (var permutation in allPermutations)
+            {
+                if (trieOfAllWords.search(permutation))
+                {
+                    Console.WriteLine(permutation);
+                    return permutation;
+                }
+            }
+            return "no valid word";
+        }
         public static string givingRandomWordWithNLenght(int n)
         {
             Random r = new Random();
