@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
 namespace Demo1_Words
 {
     class StartUp
@@ -20,21 +19,22 @@ namespace Demo1_Words
         public const int RANGE_OF_WORD_OF_9CHARACTERS = 180766;
         public const int RANGE_OF_WORD_OF_10CHARACTERS = 223760;
         public const int RANGE_OF_WORD_OF_10_PLUS_CHARACTERS = 340728;
-        static void Main(string[] args)
+        static void Main()
         {
             allWords = File.ReadAllLines(@"C:\Users\Stefan\Desktop\Demo1-Words\Demo1-Words\Demo1-Words\resource\words.txt").ToList();
             allWords = allWords.OrderBy(x => x.Length).ToList();
             allWords.ForEach(x => trieOfAllWords.insert(x));
-            Console.ReadKey();            
-            string randomword = givingRandomWordWithNLenght(4);
-            Console.WriteLine(randomword);
-            List<string> valids = findingSoution(randomword);
-            valids.ForEach(x=> Console.WriteLine(x));
+            Console.WriteLine(Shuffle("jabc"));
         }
-
+        public static string Shuffle(string input)
+        {
+            Random num = new Random();
+            return  new string(input.ToCharArray().
+                OrderBy(s => (num.Next(2) % 2) == 0).ToArray());
+        }
         public static List<string> findingSoution(string characters)
         {
-            int range = 0;
+            int range;
             switch (characters.Length)
             {
                 case 3:
@@ -64,16 +64,12 @@ namespace Demo1_Words
                     default:
                         range = RANGE_OF_WORD_OF_10_PLUS_CHARACTERS;
                     break;
-
-
             }
-
             List<string> validWords = new List<string>();
             int[] alphabetArray = new int[26];
             for (int i = 0; i < characters.Length; i++)
             {
-                alphabetArray[characters[i] - 'a']++;
-                
+                alphabetArray[characters[i] - 'a']++;                
             }
             for (int i = 0; i < range; i++)
             {
