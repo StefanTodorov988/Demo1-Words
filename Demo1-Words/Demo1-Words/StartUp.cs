@@ -25,27 +25,82 @@ namespace Demo1_Words
             allWords = File.ReadAllLines(@"C:\Users\Stefan\Desktop\Demo1-Words\Demo1-Words\Demo1-Words\resource\words.txt").ToList();
             allWords = allWords.OrderBy(x => x.Length).ToList();
             allWords.ForEach(x => trieOfAllWords.insert(x));
-            //Console.WriteLine(trieOfAllWords.search("boom"));
-            //Console.WriteLine(givingRandomWordWithNLenght(11));
-            findingSoution("oba");
+            Console.ReadKey();            
+            string randomword = givingRandomWordWithNLenght(4);
+            Console.WriteLine(randomword);
+            List<string> valids = findingSoution(randomword);
+            valids.ForEach(x=> Console.WriteLine(x));
         }
 
-        public static string findingSoution(string characters)
+        public static List<string> findingSoution(string characters)
         {
-            var allPermutations = characters.Select(x => x.ToString());
-            int size = characters.Length;
-            for (int i = 0; i < size - 1; i++)
-                allPermutations = allPermutations.SelectMany(x => characters, (x, y) => x + y);
-
-            foreach (var permutation in allPermutations)
+            int range = 0;
+            switch (characters.Length)
             {
-                if (trieOfAllWords.search(permutation))
+                case 3:
+                    range = RANGE_OF_WORD_OF_3CHARACTERS;
+                    break;
+                case 4:
+                    range = RANGE_OF_WORD_OF_4CHARACTERS;
+                    break;
+                case 5:
+                    range = RANGE_OF_WORD_OF_5CHARACTERS;
+                    break;
+                case 6:
+                    range = RANGE_OF_WORD_OF_6CHARACTERS;
+                    break;
+                case 7:
+                    range = RANGE_OF_WORD_OF_7CHARACTERS;
+                    break;
+                case 8:
+                    range = RANGE_OF_WORD_OF_8CHARACTERS;
+                    break;
+                case 9:
+                    range = RANGE_OF_WORD_OF_9CHARACTERS;
+                    break;
+                case 10:
+                    range = RANGE_OF_WORD_OF_10CHARACTERS;
+                    break;
+                    default:
+                        range = RANGE_OF_WORD_OF_10_PLUS_CHARACTERS;
+                    break;
+
+
+            }
+
+            List<string> validWords = new List<string>();
+            int[] alphabetArray = new int[26];
+            for (int i = 0; i < characters.Length; i++)
+            {
+                alphabetArray[characters[i] - 'a']++;
+                
+            }
+            for (int i = 0; i < range; i++)
+            {
+                bool isValid = true;
+                string currentWord = allWords[i];
+                int[] temporaryArray = new int[26];
+                for (int j = 0; j < currentWord.Length; j++)
                 {
-                    Console.WriteLine(permutation);
-                    return permutation;
+                    temporaryArray[currentWord[j] - 'a']++;
+                }
+                for (int j = 0; j <= 25; j++)
+                {
+                    if (alphabetArray[j] < temporaryArray[j])
+                    {
+                        isValid = false;
+                    }
+                }
+                if (isValid)
+                {
+                    validWords.Add(currentWord);
                 }
             }
-            return "no valid word";
+            if (validWords.Count == 0)
+            {
+                Console.WriteLine("No valid word");
+            }
+            return validWords;
         }
         public static string givingRandomWordWithNLenght(int n)
         {
