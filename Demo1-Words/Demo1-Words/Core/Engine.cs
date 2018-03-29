@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using Demo1_Words.Factory;
-    using Demo1_Words.Model;
+    using Factory;
+    using Model;
     class Engine
     {
         private TrieFactory trieFactory;
@@ -32,7 +32,7 @@
                 level.runLevel();
             }
             else if (input == "2")
-            {
+            { 
                 Console.Clear();
                 Console.WriteLine(Menu.resolverMenu);
                 string characters = Console.ReadLine().Replace(" " , String.Empty);
