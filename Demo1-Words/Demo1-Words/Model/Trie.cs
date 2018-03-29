@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace Demo1_Words
+﻿namespace Demo1_Words
 {
     using System;
-
+    using System.Collections.Generic;
     class Trie
     {
         public Dictionary<char, Trie> children;
