@@ -27,7 +27,6 @@
                 Console.WriteLine(Menu.levelsMenu);
                 Level level;
                 int chosenLevel = int.Parse(Console.ReadLine());
-
                 level = levelFactory.createLever(chosenLevel);
                 level.runLevel();
             }
@@ -37,10 +36,13 @@
                 Console.WriteLine(Menu.resolverMenu);
                 string characters = Console.ReadLine().Replace(" " , String.Empty);
                 List<string> solutions = wordOperator.findingSoution(characters);
-                Console.WriteLine("Words you can make with these characters are:");
-                foreach (string solution in solutions)
+                if (!(solutions.Count == 0))
                 {
-                    Console.WriteLine(solution);
+                    Console.WriteLine("Words you can make with these characters are:");
+                    foreach (string solution in solutions)
+                    {
+                        Console.WriteLine(solution);
+                    }
                 }
             }
             else if (input == "3")

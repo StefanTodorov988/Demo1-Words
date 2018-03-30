@@ -1,4 +1,6 @@
-﻿namespace Demo1_Words.Core
+﻿using System.Text.RegularExpressions;
+
+namespace Demo1_Words.Core
 {
     using System;
     using System.Collections.Generic;
@@ -6,11 +8,37 @@
     using System.Linq;
     class wordOperator
     {
-        private static List<string> allWords = File.ReadAllLines(@"C:\Users\Stefan\Desktop\Demo1-Words\Demo1-Words\Demo1-Words\resource\words.txt").ToList();
+        private static List<string> allWords = File.ReadAllLines("legitWords.txt").ToList();
 
         public wordOperator()
         {
             
+        }
+
+        public static bool atemptValidation(string alphabet, string atempt)
+        {
+            if (alphabet.Length < atempt.Length || atempt == String.Empty || !(Regex.IsMatch(atempt, @"^[a-zA-Z]+$")))
+            {
+                return false;
+            }
+            char[] alphabetArray = new char[26];
+            char[] atemtArray = new char[26];
+            for (int j = 0; j < alphabet.Length; j++)
+            {
+                alphabetArray[alphabet[j] - 'a']++;
+                if (j < atempt.Length)
+                {
+                    atemtArray[atempt[j] - 'a']++;
+                }
+            }
+            for (int j = 0; j <= 25; j++)
+            {
+                if (alphabetArray[j] < atemtArray[j])
+                {
+                    return  false;
+                }
+            }
+            return true;
         }
         public static string shuffle(string str)
         {

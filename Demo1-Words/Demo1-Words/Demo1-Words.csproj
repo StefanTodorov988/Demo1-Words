@@ -57,6 +57,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="resource\legitWords.txt" />
     <Content Include="resource\words.txt" />
   </ItemGroup>
   <ItemGroup />

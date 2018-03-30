@@ -1,5 +1,4 @@
-﻿
-namespace Demo1_Words.Model
+﻿namespace Demo1_Words.Model
 {
     using System;
     using System.Collections.Generic;
@@ -22,31 +21,37 @@ namespace Demo1_Words.Model
             List<string> resolved = wordOperator.findingSoution(characters);
             string attempt = Console.ReadLine();          
             while (true)
-            {                
+            {
+                
                 if (attempt == "!surrender")
                 {
                     Console.WriteLine("Words left are:");
                     resolved.ForEach(x => Console.WriteLine(x));
                     break;
                 }
+                if (!wordOperator.atemptValidation(characters.Trim(),attempt.Trim()))
+                {
+                    Console.WriteLine("Please enter a valid input.");
+                    attempt = Console.ReadLine();
+                    continue;
+                }
+                if (Engine.trieFromDictionary.search(attempt))
+                {
+                    resolved.Remove(attempt);
+                    Console.WriteLine(attempt + @" is valid word!");
+                    Console.WriteLine(resolved.Count + " words left.");
+                }             
+                else
+                {
+                    Console.WriteLine(attempt + " is not valid word!");
+                }
                 if (resolved.Count == 0)
                 {
                     Console.WriteLine("You found all the words !!!");
                     break;
                 }
-                if (Engine.trieFromDictionary.search(attempt))
-                {
-                    resolved.Remove(attempt);
-                    Console.WriteLine(attempt + " is valid word!");
-                }
-                else
-                {
-                    Console.WriteLine(attempt + " is not valid word!");
-                }
                 attempt = Console.ReadLine();
             }
-            Console.Write("Press any key to exit...");
-            Console.ReadLine();
         }
     }
 }
