@@ -17,31 +17,42 @@
             trieFactory = new TrieFactory();
             trieFromDictionary = trieFactory.createTrieFromDictionary();
             levelFactory = new LevelFactory();
-
             Console.WriteLine(Menu.mainMenu);
-
             string input = Console.ReadLine();
             if (input == "1")
             {
                 Console.Clear();
-                Console.WriteLine(Menu.levelsMenu);
                 Level level;
+                Console.WriteLine(Menu.levelsMenu);
                 int chosenLevel = int.Parse(Console.ReadLine());
                 level = levelFactory.createLever(chosenLevel);
                 level.runLevel();
             }
             else if (input == "2")
-            { 
+            {
                 Console.Clear();
                 Console.WriteLine(Menu.resolverMenu);
-                string characters = Console.ReadLine().Replace(" " , String.Empty);
-                List<string> solutions = wordOperator.findingSoution(characters);
-                if (!(solutions.Count == 0))
+                string characters = Console.ReadLine().Replace(" ", String.Empty).ToLower();
+                bool passed = true;
+                while (passed)
                 {
-                    Console.WriteLine("Words you can make with these characters are:");
-                    foreach (string solution in solutions)
+                    if (wordOperator.solverValidation(characters))
                     {
-                        Console.WriteLine(solution);
+                        passed = false;
+                        List<string> solutions = wordOperator.findingSoution(characters);
+                        if (!(solutions.Count == 0))
+                        {
+
+                            Console.WriteLine("Words you can build with these characters are:");
+                            foreach (string solution in solutions)
+                            {
+                                Console.WriteLine(solution);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        characters = Console.ReadLine().Replace(" ", String.Empty);
                     }
                 }
             }

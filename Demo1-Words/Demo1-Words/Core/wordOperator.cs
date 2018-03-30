@@ -9,12 +9,10 @@ namespace Demo1_Words.Core
     class wordOperator
     {
         private static List<string> allWords = File.ReadAllLines("legitWords.txt").ToList();
-
         public wordOperator()
         {
             
         }
-
         public static bool atemptValidation(string alphabet, string atempt)
         {
             if (alphabet.Length < atempt.Length || atempt == String.Empty || !(Regex.IsMatch(atempt, @"^[a-zA-Z]+$")))
@@ -37,6 +35,21 @@ namespace Demo1_Words.Core
                 {
                     return  false;
                 }
+            }
+            return true;
+        }
+
+        public static bool solverValidation(string characters)
+        {
+            if (characters == String.Empty || characters.Length < 3)
+            {
+                Console.WriteLine("Please enter at least 3 letters.");
+                return false;
+            }
+            if(!(Regex.IsMatch(characters, @"^[a-zA-Z]+$")))
+            {
+                Console.WriteLine("The resolver works only with letters.");
+                return false;
             }
             return true;
         }
@@ -121,7 +134,6 @@ namespace Demo1_Words.Core
             }
             return validWords;
         }
-
         public static string givingRandomWordWithNLenght(int n)
         {
             Random r = new Random();
