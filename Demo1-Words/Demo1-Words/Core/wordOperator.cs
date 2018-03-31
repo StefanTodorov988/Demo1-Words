@@ -13,7 +13,7 @@ namespace Demo1_Words.Core
         {
             
         }
-        public static bool atemptValidation(string alphabet, string atempt)
+        public static bool AtemptValidation(string alphabet, string atempt)
         {
             if (alphabet.Length < atempt.Length || atempt == String.Empty || !(Regex.IsMatch(atempt, @"^[a-zA-Z]+$")))
             {
@@ -39,7 +39,7 @@ namespace Demo1_Words.Core
             return true;
         }
 
-        public static bool solverValidation(string characters)
+        public static bool SolverValidation(string characters)
         {
             if (characters == String.Empty || characters.Length < 3)
             {
@@ -53,7 +53,7 @@ namespace Demo1_Words.Core
             }
             return true;
         }
-        public static string shuffle(string str)
+        public static string Shuffle(string str)
         {
             char[] array = str.ToCharArray();
             Random rng = new Random();
@@ -68,7 +68,7 @@ namespace Demo1_Words.Core
             }
             return new string(array);
         }
-        public static List<string> findingSoution(string characters)
+        public static List<string> FindingSoution(string characters)
         {
             int range;
             switch (characters.Length)
@@ -134,7 +134,7 @@ namespace Demo1_Words.Core
             }
             return validWords;
         }
-        public static string givingRandomWordWithNLenght(int n)
+        public static string GivingRandomWordWithNLenght(int n)
         {
             Random r = new Random();
             int randomIndex = r.Next();

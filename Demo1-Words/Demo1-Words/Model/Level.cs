@@ -11,14 +11,14 @@
         {
             this.chosenLevel = chosenLevel;
         }
-        public void runLevel()
+        public void RunLevel()
         {
             Console.Clear();
-            string characters = wordOperator.shuffle(wordOperator.givingRandomWordWithNLenght(chosenLevel));
+            string characters = wordOperator.Shuffle(wordOperator.GivingRandomWordWithNLenght(chosenLevel));
             Console.Write("Characters you got are: ");
             characters.ToList().ForEach(x => Console.Write(x + " "));
             Console.WriteLine();
-            List<string> resolved = wordOperator.findingSoution(characters);
+            List<string> resolved = wordOperator.FindingSoution(characters);
             string attempt = Console.ReadLine();          
             while (true)
             {
@@ -29,13 +29,13 @@
                     resolved.ForEach(x => Console.WriteLine(x));
                     break;
                 }
-                if (!wordOperator.atemptValidation(characters.Trim(),attempt.Trim()))
+                if (!wordOperator.AtemptValidation(characters.Trim(),attempt.Trim()))
                 {
                     Console.WriteLine("Please enter a valid input.");
                     attempt = Console.ReadLine();
                     continue;
                 }
-                if (Engine.trieFromDictionary.search(attempt))
+                if (Engine.trieFromDictionary.Search(attempt))
                 {
                     resolved.Remove(attempt);
                     Console.WriteLine(attempt + @" is valid word!");

@@ -10,7 +10,7 @@
         public static Trie trieFromDictionary;
         private LevelFactory levelFactory;
 
-        public void start()
+        public void Start()
         {
             Console.WindowWidth = Constants.CONSOLE_WIDHT;
             Console.WindowHeight = Constants.CONSOLE_HEIGH;
@@ -26,7 +26,7 @@
                 Console.WriteLine(Menu.levelsMenu);
                 int chosenLevel = int.Parse(Console.ReadLine());
                 level = levelFactory.createLever(chosenLevel);
-                level.runLevel();
+                level.RunLevel();
             }
             else if (input == "2")
             {
@@ -36,10 +36,10 @@
                 bool passed = true;
                 while (passed)
                 {
-                    if (wordOperator.solverValidation(characters))
+                    if (wordOperator.SolverValidation(characters))
                     {
                         passed = false;
-                        List<string> solutions = wordOperator.findingSoution(characters);
+                        List<string> solutions = wordOperator.FindingSoution(characters);
                         if (!(solutions.Count == 0))
                         {
 

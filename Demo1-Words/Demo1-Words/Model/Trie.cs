@@ -1,54 +1,88 @@
-﻿namespace Demo1_Words
+﻿using System.Collections.Generic;
+
+public class Trie
 {
-    using System;
-    using System.Collections.Generic;
-    class Trie
+    private class TrieNode
     {
-        public Dictionary<char, Trie> children;
+        public Dictionary<char, TrieNode> children;
         public bool endOfWord;
-        public Trie()
+        public TrieNode()
         {
-            children = new Dictionary<char, Trie>();
+            children = new Dictionary<char, TrieNode>();
             endOfWord = false;
         }
-        public void insert(string word)
+    }
+    private TrieNode root;
+    public Trie()
+    {
+        root = new TrieNode();
+    }
+    public void Insert(string word)
+    {
+        TrieNode current = root;
+        for (int i = 0; i < word.Length; i++)
         {
-            Trie current = this;
-            for (int i = 0; i < word.Length; i++)
+            char ch = word[i];
+            TrieNode node = null;
+            if (current.children.ContainsKey(ch))
             {
-                char ch = word[i];
-                Trie node;
-                if (current.children.ContainsKey(ch))
-                {
-                    node = current.children[ch];
-                }
-                else
-                { 
-                    node = new Trie();
-                    current.children.Add(ch, node);
-                }
-                current = node;
+                node = current.children[ch];
             }
-            current.endOfWord = true;
+            else if (node == null)
+            {
+                node = new TrieNode();
+                current.children.Add(ch, node);
+            }
+            current = node;
         }
-        public bool search(String word)
+        current.endOfWord = true;
+    }
+    public bool Search(string word)
+    {
+        TrieNode current = root;
+        for (int i = 0; i < word.Length; i++)
         {
-            Trie current = this;
-            for (int i = 0; i < word.Length; i++)
+            char ch = word[i];
+            TrieNode node = null;
+            if (current.children.ContainsKey(ch))
             {
-                char ch = word[i];
-                Trie node;
-                if (current.children.ContainsKey(ch))
-                {
-                    node = current.children[ch];
-                }
-                else
-                {
-                    return false;
-                }
-                current = node;
+                node = current.children[ch];
             }
-            return current.endOfWord;
+            if (node == null)
+            {
+                return false;
+            }
+            current = node;
         }
+        return current.endOfWord;
+    }
+    public void Delete(string word)
+    {
+        Delete(root, word, 0);
+    }
+    private bool Delete(TrieNode current, string word, int index)
+    {
+        if (index == word.Length)
+        {
+            if (!current.endOfWord)
+            {
+                return false;
+            }
+            current.endOfWord = false;
+            return current.children.Count == 0;
+        }
+        char ch = word[index];
+        TrieNode node = current.children[ch];
+        if (node == null)
+        {
+            return false;
+        }
+        bool shouldDeleteCurrentNode = Delete(node, word, index + 1);
+        if (shouldDeleteCurrentNode)
+        {
+            current.children.Remove(ch);
+            return current.children.Count == 0;
+        }
+        return false;
     }
 }

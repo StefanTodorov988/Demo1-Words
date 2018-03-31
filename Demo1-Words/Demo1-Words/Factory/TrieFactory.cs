@@ -14,7 +14,7 @@
             Trie trieOfAllWords = new Trie();
             List<string> allWords;
             allWords = File.ReadAllLines("legitWords.txt").ToList();
-            allWords.ForEach(x => trieOfAllWords.insert(x));
+            allWords.ForEach(x => trieOfAllWords.Insert(x));
             return trieOfAllWords;
         }
     }
