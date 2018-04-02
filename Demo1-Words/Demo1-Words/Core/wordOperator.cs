@@ -62,7 +62,7 @@ namespace Demo1_Words.Core
             {
                 n--;
                 int k = rng.Next(n + 1);
-                var value = array[k];
+                char value = array[k];
                 array[k] = array[n];
                 array[n] = value;
             }
@@ -101,6 +101,7 @@ namespace Demo1_Words.Core
                     range = Constants.RANGE_OF_WORD_OF_10_PLUS_CHARACTERS;
                     break;
             }
+
             List<string> validWords = new List<string>();
             int[] alphabetArray = new int[26];
             for (int i = 0; i < characters.Length; i++)

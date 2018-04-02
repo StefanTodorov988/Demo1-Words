@@ -15,7 +15,7 @@
         {
             Console.Clear();
             string characters = wordOperator.Shuffle(wordOperator.GivingRandomWordWithNLenght(chosenLevel));
-            Console.Write("Characters you got are: ");
+            Console.Write(Menu.pickedCharacters);
             characters.ToList().ForEach(x => Console.Write(x + " "));
             Console.WriteLine();
             List<string> resolved = wordOperator.FindingSoution(characters);
@@ -26,8 +26,17 @@
                 if (attempt == "!surrender")
                 {
                     Console.WriteLine("Words left are:");
-                    resolved.ForEach(x => Console.WriteLine(x));
+                    resolved.ForEach(x => Console.WriteLine("->" + x));
                     break;
+                }
+                if (attempt == "!clear")
+                {
+                    Console.Clear();
+                    Console.Write(Menu.pickedCharacters);
+                    characters.ToList().ForEach(x => Console.Write(x + " "));
+                    Console.WriteLine();
+                    attempt = Console.ReadLine();
+                    continue;
                 }
                 if (!wordOperator.AtemptValidation(characters.Trim(),attempt.Trim()))
                 {

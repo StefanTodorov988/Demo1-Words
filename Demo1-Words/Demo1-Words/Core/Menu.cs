@@ -18,5 +18,7 @@
                                           "11. Word with 10+ characters\r\n";
 
         public static string resolverMenu = "Enter the characters you want to use:";
+
+        public static string pickedCharacters = "Characters you got are: ";
     }
 }

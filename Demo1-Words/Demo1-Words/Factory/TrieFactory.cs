@@ -5,10 +5,6 @@
     using System.Linq;
     class TrieFactory
     {
-        public TrieFactory()
-        {
-
-        }
         public Trie createTrieFromDictionary()
         {
             Trie trieOfAllWords = new Trie();
