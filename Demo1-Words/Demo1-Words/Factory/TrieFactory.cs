@@ -2,10 +2,11 @@
 {
     using System.Collections.Generic;
     using System.IO;
+    using Model;
     using System.Linq;
     class TrieFactory
     {
-        public Trie createTrieFromDictionary()
+        public Trie CreateTrieFromDictionary()
         {
             Trie trieOfAllWords = new Trie();
             List<string> allWords;

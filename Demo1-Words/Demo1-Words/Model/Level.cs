@@ -7,15 +7,17 @@
     class Level
     {
         private int chosenLevel;
+        private WordOperator wordOperator;
         public Level(int chosenLevel)
         {
+            wordOperator = new WordOperator();
             this.chosenLevel = chosenLevel;
         }
         public void RunLevel()
         {
             Console.Clear();
             string characters = wordOperator.Shuffle(wordOperator.GivingRandomWordWithNLenght(chosenLevel));
-            Console.Write(Menu.pickedCharacters);
+            Console.Write(MenuMessages.pickedCharacters);
             characters.ToList().ForEach(x => Console.Write(x + " "));
             Console.WriteLine();
             List<string> resolved = wordOperator.FindingSoution(characters);
@@ -32,13 +34,13 @@
                 if (attempt == "!clear")
                 {
                     Console.Clear();
-                    Console.Write(Menu.pickedCharacters);
+                    Console.Write(MenuMessages.pickedCharacters);
                     characters.ToList().ForEach(x => Console.Write(x + " "));
                     Console.WriteLine();
                     attempt = Console.ReadLine();
                     continue;
                 }
-                if (!wordOperator.AtemptValidation(characters.Trim(),attempt.Trim()))
+                if (attempt != null && !wordOperator.AtemptValidation(characters.Trim(),attempt.Trim()))
                 {
                     Console.WriteLine("Please enter a valid input.");
                     attempt = Console.ReadLine();

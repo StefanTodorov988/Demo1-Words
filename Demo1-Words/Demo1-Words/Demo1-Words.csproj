@@ -44,8 +44,8 @@
   <ItemGroup>
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Core\Engine.cs" />
-    <Compile Include="Core\Menu.cs" />
-    <Compile Include="Core\wordOperator.cs" />
+    <Compile Include="Core\MenuMessages.cs" />
+    <Compile Include="Core\WordOperator.cs" />
     <Compile Include="Factory\TrieFactory.cs" />
     <Compile Include="Factory\LevelFactory.cs" />
     <Compile Include="Model\Level.cs" />

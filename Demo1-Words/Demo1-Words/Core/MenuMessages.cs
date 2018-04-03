@@ -1,6 +1,6 @@
 ﻿namespace Demo1_Words.Core
 {
-    public class Menu
+    public class MenuMessages
     {
         public static string mainMenu = "1. New game\r\n" +
                                         "2. Solver\r\n" +

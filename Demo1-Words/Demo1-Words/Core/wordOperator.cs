@@ -1,19 +1,32 @@
-﻿using System.Text.RegularExpressions;
-
-namespace Demo1_Words.Core
+﻿namespace Demo1_Words.Core
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Text.RegularExpressions;
     using System.Linq;
-    class wordOperator
+    public class WordOperator
     {
-        private static List<string> allWords = File.ReadAllLines("legitWords.txt").ToList();
-        public wordOperator()
+        private  List<string> allWords;
+        private Dictionary<int, int> rangeDictionary;
+        public WordOperator()
         {
-            
+            allWords = File.ReadAllLines("legitWords.txt").ToList();
+            rangeDictionary = new Dictionary<int, int>
+            {
+                {2,0},
+                {3,Constants.RANGE_OF_WORD_OF_3CHARACTERS},
+                {4,Constants.RANGE_OF_WORD_OF_4CHARACTERS},
+                {5,Constants.RANGE_OF_WORD_OF_5CHARACTERS},
+                {6,Constants.RANGE_OF_WORD_OF_6CHARACTERS},
+                {7,Constants.RANGE_OF_WORD_OF_7CHARACTERS},
+                {8,Constants.RANGE_OF_WORD_OF_8CHARACTERS},
+                {9,Constants.RANGE_OF_WORD_OF_9CHARACTERS},
+                {10,Constants.RANGE_OF_WORD_OF_10CHARACTERS},
+                {11,Constants.RANGE_OF_WORD_OF_10_PLUS_CHARACTERS}
+            };
         }
-        public static bool AtemptValidation(string alphabet, string atempt)
+        public bool AtemptValidation(string alphabet, string atempt)
         {
             if (alphabet.Length < atempt.Length || atempt == String.Empty || !(Regex.IsMatch(atempt, @"^[a-zA-Z]+$")))
             {
@@ -38,8 +51,7 @@ namespace Demo1_Words.Core
             }
             return true;
         }
-
-        public static bool SolverValidation(string characters)
+        public bool SolverValidation(string characters)
         {
             if (characters == String.Empty || characters.Length < 3)
             {
@@ -53,7 +65,7 @@ namespace Demo1_Words.Core
             }
             return true;
         }
-        public static string Shuffle(string str)
+        public string Shuffle(string str)
         {
             char[] array = str.ToCharArray();
             Random rng = new Random();
@@ -68,40 +80,18 @@ namespace Demo1_Words.Core
             }
             return new string(array);
         }
-        public static List<string> FindingSoution(string characters)
+        public List<string> FindingSoution(string characters)
         {
-            int range;
-            switch (characters.Length)
+            int length;
+            if (characters.Length > 11)
             {
-                case 3:
-                    range = Constants.RANGE_OF_WORD_OF_3CHARACTERS;
-                    break;
-                case 4:
-                    range = Constants.RANGE_OF_WORD_OF_4CHARACTERS;
-                    break;
-                case 5:
-                    range = Constants.RANGE_OF_WORD_OF_5CHARACTERS;
-                    break;
-                case 6:
-                    range = Constants.RANGE_OF_WORD_OF_6CHARACTERS;
-                    break;
-                case 7:
-                    range = Constants.RANGE_OF_WORD_OF_7CHARACTERS;
-                    break;
-                case 8:
-                    range = Constants.RANGE_OF_WORD_OF_8CHARACTERS;
-                    break;
-                case 9:
-                    range = Constants.RANGE_OF_WORD_OF_9CHARACTERS;
-                    break;
-                case 10:
-                    range = Constants.RANGE_OF_WORD_OF_10CHARACTERS;
-                    break;
-                default:
-                    range = Constants.RANGE_OF_WORD_OF_10_PLUS_CHARACTERS;
-                    break;
+                length = 11;
             }
-
+            else
+            {
+                length = characters.Length;
+            }
+            int range = rangeDictionary[length];
             List<string> validWords = new List<string>();
             int[] alphabetArray = new int[26];
             for (int i = 0; i < characters.Length; i++)
@@ -135,40 +125,10 @@ namespace Demo1_Words.Core
             }
             return validWords;
         }
-        public static string GivingRandomWordWithNLenght(int n)
+        public string GivingRandomWordWithNLenght(int n)
         {
             Random r = new Random();
-            int randomIndex = r.Next();
-            switch (n)
-            {
-                case 3:
-                    randomIndex = r.Next(0, Constants.RANGE_OF_WORD_OF_3CHARACTERS);
-                    break;
-                case 4:
-                    randomIndex = r.Next(Constants.RANGE_OF_WORD_OF_3CHARACTERS, Constants.RANGE_OF_WORD_OF_4CHARACTERS);
-                    break;
-                case 5:
-                    randomIndex = r.Next(Constants.RANGE_OF_WORD_OF_4CHARACTERS, Constants.RANGE_OF_WORD_OF_5CHARACTERS);
-                    break;
-                case 6:
-                    randomIndex = r.Next(Constants.RANGE_OF_WORD_OF_5CHARACTERS, Constants.RANGE_OF_WORD_OF_6CHARACTERS);
-                    break;
-                case 7:
-                    randomIndex = r.Next(Constants.RANGE_OF_WORD_OF_6CHARACTERS, Constants.RANGE_OF_WORD_OF_7CHARACTERS);
-                    break;
-                case 8:
-                    randomIndex = r.Next(Constants.RANGE_OF_WORD_OF_7CHARACTERS, Constants.RANGE_OF_WORD_OF_8CHARACTERS);
-                    break;
-                case 9:
-                    randomIndex = r.Next(Constants.RANGE_OF_WORD_OF_8CHARACTERS, Constants.RANGE_OF_WORD_OF_9CHARACTERS);
-                    break;
-                case 10:
-                    randomIndex = r.Next(Constants.RANGE_OF_WORD_OF_9CHARACTERS, Constants.RANGE_OF_WORD_OF_10CHARACTERS);
-                    break;
-                default:
-                    randomIndex = r.Next(Constants.RANGE_OF_WORD_OF_10CHARACTERS, Constants.RANGE_OF_WORD_OF_10_PLUS_CHARACTERS);
-                    break;
-            }
+            int randomIndex = r.Next(rangeDictionary[n-1],rangeDictionary[n]);
             return allWords[randomIndex];
         }
     }
