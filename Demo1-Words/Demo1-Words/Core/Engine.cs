@@ -6,16 +6,11 @@
 
     public class Engine
     {
-        private TrieFactory trieFactory;
-        public static Trie trieFromDictionary;
         private IGamePoint gamePoint;
         private IGamePointFactory gamePointFactory;
-
         public Engine()
         {
-            gamePointFactory = new GamePointFactory();
-            trieFactory = new TrieFactory();
-            trieFromDictionary = trieFactory.CreateTrieFromDictionary();
+            gamePointFactory = new GamePointFactory();       
             CustomIO.ConfigureSettings();
         }
         public void Start()

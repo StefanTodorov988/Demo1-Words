@@ -1,16 +1,22 @@
-﻿namespace Demo1_Words.Model
+﻿
+namespace Demo1_Words.Model
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using Core;
+    using Factory;
     class Level
     {
         private int chosenLevel;
         private WordOperator wordOperator;
+        private TrieFactory trieFactory;
+        public static Trie trieFromDictionary;
         public Level(int chosenLevel)
         {
             wordOperator = new WordOperator();
+            trieFactory = new TrieFactory();
+            trieFromDictionary = trieFactory.CreateTrieFromDictionary();
             this.chosenLevel = chosenLevel;
         }
         public void RunLevel()
@@ -21,10 +27,10 @@
             characters.ToList().ForEach(x => Console.Write(x + " "));
             Console.WriteLine();
             List<string> resolved = wordOperator.FindingSoutions(characters);
-            string attempt = Console.ReadLine();          
+            string attempt = Console.ReadLine();
             while (true)
             {
-                
+
                 if (attempt == "!surrender")
                 {
                     Console.WriteLine("Words left are:");
@@ -40,18 +46,18 @@
                     attempt = Console.ReadLine();
                     continue;
                 }
-                if (attempt != null && !wordOperator.AtemptValidation(characters.Trim(),attempt.Trim()))
+                if (attempt != null && !wordOperator.AtemptValidation(characters.Trim(), attempt.Trim()))
                 {
                     Console.WriteLine("Please enter a valid input.");
                     attempt = Console.ReadLine();
                     continue;
                 }
-                if (Engine.trieFromDictionary.Search(attempt))
+                if (trieFromDictionary.Search(attempt))
                 {
                     resolved.Remove(attempt);
                     Console.WriteLine(attempt + @" is valid word!");
                     Console.WriteLine(resolved.Count + " words left.");
-                }             
+                }
                 else
                 {
                     Console.WriteLine(attempt + " is not valid word!");
