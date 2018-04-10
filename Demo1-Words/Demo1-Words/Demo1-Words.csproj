@@ -42,16 +42,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Constants.cs" />
+    <Compile Include="Constants\UserInputConstants.cs" />
+    <Compile Include="Constants\UserIntefraceConstants.cs" />
+    <Compile Include="Constants\WordIndexConstants.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\MenuMessages.cs" />
     <Compile Include="Core\WordOperator.cs" />
+    <Compile Include="CustomIO.cs" />
+    <Compile Include="ExitPoint.cs" />
+    <Compile Include="Factory\GamePointFactory.cs" />
+    <Compile Include="Factory\IGamePointFactory.cs" />
     <Compile Include="Factory\TrieFactory.cs" />
     <Compile Include="Factory\LevelFactory.cs" />
+    <Compile Include="GamePoint.cs" />
+    <Compile Include="IGamePoint.cs" />
     <Compile Include="Model\Level.cs" />
+    <Compile Include="NewGamePoint.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Trie.cs" />
+    <Compile Include="WordSolverPoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,6 +1,6 @@
 ﻿namespace Demo1_Words
 {
-    using Demo1_Words.Core;
+    using Core;
     class StartUp
     {
         static void Main()

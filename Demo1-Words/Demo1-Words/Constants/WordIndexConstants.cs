@@ -1,9 +1,7 @@
 ﻿namespace Demo1_Words.Core
 {
-    public class Constants
+    public class WordIndexConstants
     {
-        public const int ConsoleHeigh = 20;
-        public const int ConsoleWidht = 70;
         public const int RANGE_OF_WORD_OF_3CHARACTERS = 589;
         public const int RANGE_OF_WORD_OF_4CHARACTERS = 2883;
         public const int RANGE_OF_WORD_OF_5CHARACTERS = 7149;

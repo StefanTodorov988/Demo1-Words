@@ -15,15 +15,15 @@
             rangeDictionary = new Dictionary<int, int>
             {
                 {2,0},
-                {3,Constants.RANGE_OF_WORD_OF_3CHARACTERS},
-                {4,Constants.RANGE_OF_WORD_OF_4CHARACTERS},
-                {5,Constants.RANGE_OF_WORD_OF_5CHARACTERS},
-                {6,Constants.RANGE_OF_WORD_OF_6CHARACTERS},
-                {7,Constants.RANGE_OF_WORD_OF_7CHARACTERS},
-                {8,Constants.RANGE_OF_WORD_OF_8CHARACTERS},
-                {9,Constants.RANGE_OF_WORD_OF_9CHARACTERS},
-                {10,Constants.RANGE_OF_WORD_OF_10CHARACTERS},
-                {11,Constants.RANGE_OF_WORD_OF_10_PLUS_CHARACTERS}
+                {3,WordIndexConstants.RANGE_OF_WORD_OF_3CHARACTERS},
+                {4,WordIndexConstants.RANGE_OF_WORD_OF_4CHARACTERS},
+                {5,WordIndexConstants.RANGE_OF_WORD_OF_5CHARACTERS},
+                {6,WordIndexConstants.RANGE_OF_WORD_OF_6CHARACTERS},
+                {7,WordIndexConstants.RANGE_OF_WORD_OF_7CHARACTERS},
+                {8,WordIndexConstants.RANGE_OF_WORD_OF_8CHARACTERS},
+                {9,WordIndexConstants.RANGE_OF_WORD_OF_9CHARACTERS},
+                {10,WordIndexConstants.RANGE_OF_WORD_OF_10CHARACTERS},
+                {11,WordIndexConstants.RANGE_OF_WORD_OF_10_PLUS_CHARACTERS}
             };
         }
         public bool AtemptValidation(string alphabet, string atempt)
@@ -80,7 +80,7 @@
             }
             return new string(array);
         }
-        public List<string> FindingSoution(string characters)
+        public List<string> FindingSoutions(string characters)
         {
             int length;
             if (characters.Length > 11)

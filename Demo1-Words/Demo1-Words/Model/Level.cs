@@ -20,7 +20,7 @@
             Console.Write(MenuMessages.pickedCharacters);
             characters.ToList().ForEach(x => Console.Write(x + " "));
             Console.WriteLine();
-            List<string> resolved = wordOperator.FindingSoution(characters);
+            List<string> resolved = wordOperator.FindingSoutions(characters);
             string attempt = Console.ReadLine();          
             while (true)
             {
