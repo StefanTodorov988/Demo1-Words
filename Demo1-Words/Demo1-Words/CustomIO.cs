@@ -18,6 +18,10 @@ namespace Demo1_Words.Model
         {
             Console.WriteLine(value);
         }
+        public static void PrintOnLine(string value)
+        {
+            Console.Write(value);
+        }
 
         public static void ConfigureSettings()
         {

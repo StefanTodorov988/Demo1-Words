@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Demo1_Words.Core;
-using Demo1_Words.Model;
-
-namespace Demo1_Words
+﻿namespace Demo1_Words
 {
+    using System;
+    using System.Collections.Generic;
+    using Core;
+    using Model;
+
     class WordSolverPoint : IGamePoint
     {
         private WordOperator wordOperator;
@@ -16,7 +16,7 @@ namespace Demo1_Words
         public void Run()
         {
             CustomIO.ClearInterface();
-            Console.WriteLine(MenuMessages.resolverMenu);
+            CustomIO.PrintOnNewLine(MenuMessages.resolverMenu);
             string characters = CustomIO.ReadNewLine().Replace(" ", String.Empty).ToLower();
             bool passed = true;
             while (passed)

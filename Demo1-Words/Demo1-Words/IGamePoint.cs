@@ -1,4 +1,4 @@
-﻿    namespace Demo1_Words
+﻿namespace Demo1_Words
 {
     interface IGamePoint
     {

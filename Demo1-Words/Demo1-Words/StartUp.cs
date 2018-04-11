@@ -1,4 +1,7 @@
-﻿namespace Demo1_Words
+﻿using System;
+using Demo1_Words.Commands;
+
+namespace Demo1_Words
 {
     using Core;
     class StartUp
@@ -7,6 +10,7 @@
         {
             Engine engine = new Engine();
             engine.Start();
+           
         }
     }
 }

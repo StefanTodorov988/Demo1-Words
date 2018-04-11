@@ -42,6 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\ClearCommand.cs" />
+    <Compile Include="Commands\Interface\ICommand.cs" />
+    <Compile Include="Commands\SurrenderCommand.cs" />
+    <Compile Include="Constants\CommandConstants.cs" />
     <Compile Include="Constants\UserInputConstants.cs" />
     <Compile Include="Constants\UserIntefraceConstants.cs" />
     <Compile Include="Constants\WordIndexConstants.cs" />

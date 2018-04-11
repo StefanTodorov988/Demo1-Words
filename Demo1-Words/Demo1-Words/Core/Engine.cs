@@ -3,14 +3,13 @@
     using System;
     using Factory;
     using Model;
-
     public class Engine
-    {
+    {//generic strategy
         private IGamePoint gamePoint;
         private IGamePointFactory gamePointFactory;
         public Engine()
         {
-            gamePointFactory = new GamePointFactory();       
+            gamePointFactory = new GamePointFactory();
             CustomIO.ConfigureSettings();
         }
         public void Start()

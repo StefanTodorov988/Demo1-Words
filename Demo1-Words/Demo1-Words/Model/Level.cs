@@ -21,20 +21,20 @@ namespace Demo1_Words.Model
         }
         public void RunLevel()
         {
-            Console.Clear();
+            CustomIO.ClearInterface();
             string characters = wordOperator.Shuffle(wordOperator.GivingRandomWordWithNLenght(chosenLevel));
-            Console.Write(MenuMessages.pickedCharacters);
+            CustomIO.PrintOnNewLine(MenuMessages.pickedCharacters);
             characters.ToList().ForEach(x => Console.Write(x + " "));
-            Console.WriteLine();
-            List<string> resolved = wordOperator.FindingSoutions(characters);
-            string attempt = Console.ReadLine();
+            CustomIO.PrintOnNewLine(String.Empty);
+            List<string> soutions = wordOperator.FindingSoutions(characters);
+            string attempt = CustomIO.ReadNewLine();
             while (true)
             {
 
                 if (attempt == "!surrender")
-                {
+                {   
                     Console.WriteLine("Words left are:");
-                    resolved.ForEach(x => Console.WriteLine("->" + x));
+                    soutions.ForEach(x => Console.WriteLine("->" + x));
                     break;
                 }
                 if (attempt == "!clear")
@@ -54,15 +54,15 @@ namespace Demo1_Words.Model
                 }
                 if (trieFromDictionary.Search(attempt))
                 {
-                    resolved.Remove(attempt);
+                    soutions.Remove(attempt);
                     Console.WriteLine(attempt + @" is valid word!");
-                    Console.WriteLine(resolved.Count + " words left.");
+                    Console.WriteLine(soutions.Count + " words left.");
                 }
                 else
                 {
                     Console.WriteLine(attempt + " is not valid word!");
                 }
-                if (resolved.Count == 0)
+                if (soutions.Count == 0)
                 {
                     Console.WriteLine("You found all the words !!!");
                     break;
