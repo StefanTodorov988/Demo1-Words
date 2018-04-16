@@ -1,9 +1,11 @@
-﻿namespace Demo1_Words.Model
+﻿using Demo1_Words.Model.Interface;
+
+namespace Demo1_Words.Model
 {
     using System.Collections.Generic;
-    public class Trie
+    public class Trie : ITrie
     {
-        private class TrieNode
+        public class TrieNode
         {
             public Dictionary<char, TrieNode> children;
             public bool endOfWord;

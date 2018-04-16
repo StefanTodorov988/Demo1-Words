@@ -1,4 +1,7 @@
-﻿
+﻿using Demo1_Words.Core.Interface;
+using Demo1_Words.Factory.Interface;
+using Demo1_Words.Model.Interface;
+
 namespace Demo1_Words.Model
 {
     using System;
@@ -6,23 +9,27 @@ namespace Demo1_Words.Model
     using System.Linq;
     using Core;
     using Factory;
-    class Level
+    using Unity.Resolution;
+
+    class Level : ILevel
     {
-        private int chosenLevel;
-        private WordOperator wordOperator;
-        private TrieFactory trieFactory;
-        public static Trie trieFromDictionary;
-        public Level(int chosenLevel)
+        private string chosenLevel;
+        private IWordOperator wordOperator;
+        private ITrieFactory trieFactory;
+        public static ITrie trieFromDictionary;
+
+        public Level(string chosenLevel , IWordOperator wordOperator , ITrieFactory trieFactory)
         {
-            wordOperator = new WordOperator();
-            trieFactory = new TrieFactory();
-            trieFromDictionary = trieFactory.CreateTrieFromDictionary();
             this.chosenLevel = chosenLevel;
+            this.wordOperator = wordOperator;
+            this.trieFactory = trieFactory;
+            trieFromDictionary = trieFactory.CreateTrieFromDictionary();
         }
+
         public void RunLevel()
         {
             CustomIO.ClearInterface();
-            string characters = wordOperator.Shuffle(wordOperator.GivingRandomWordWithNLenght(chosenLevel));
+            string characters = wordOperator.Shuffle(wordOperator.GivingRandomWordWithNLenght(Int32.Parse(chosenLevel)));
             CustomIO.PrintOnNewLine(MenuMessages.pickedCharacters);
             characters.ToList().ForEach(x => Console.Write(x + " "));
             CustomIO.PrintOnNewLine(String.Empty);
@@ -30,9 +37,8 @@ namespace Demo1_Words.Model
             string attempt = CustomIO.ReadNewLine();
             while (true)
             {
-
                 if (attempt == "!surrender")
-                {   
+                {
                     Console.WriteLine("Words left are:");
                     soutions.ForEach(x => Console.WriteLine("->" + x));
                     break;
@@ -43,8 +49,6 @@ namespace Demo1_Words.Model
                     Console.Write(MenuMessages.pickedCharacters);
                     characters.ToList().ForEach(x => Console.Write(x + " "));
                     Console.WriteLine();
-                    attempt = Console.ReadLine();
-                    continue;
                 }
                 if (attempt != null && !wordOperator.AtemptValidation(characters.Trim(), attempt.Trim()))
                 {

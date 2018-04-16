@@ -1,23 +1,23 @@
-﻿using Demo1_Words.Constants;
+﻿using Unity;
 
 namespace Demo1_Words.Factory
 {
+    using System.Collections.Generic;
+    using System.Linq;
     class GamePointFactory : IGamePointFactory
     {
+        private IGamePoint[] strategies;
+        private IUnityContainer unityContainer;
+
+        public GamePointFactory(IGamePoint[] strategies , IUnityContainer unityContainer)
+        {
+            this.unityContainer = unityContainer;
+            this.strategies = strategies;
+        }
+
         public IGamePoint CreateGamePoint(string input)
         {
-            if (input == UserInputConstants.NEW_GAME)
-            {
-                return new NewGamePoint();
-            }
-            else if (input == UserInputConstants.WORD_SOLVER)
-            {
-                return new WordSolverPoint();
-            }
-            else // if (input == UserInputConstants.EXIT)
-            {
-                return new ExitPoint();
-            }
+          return strategies.FirstOrDefault(strategie => strategie.IsApplicable(input)) ?? new ExitPoint();
         }
     }
 }

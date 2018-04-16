@@ -1,4 +1,7 @@
-﻿namespace Demo1_Words
+﻿using Demo1_Words.Constants;
+using Demo1_Words.Core.Interface;
+
+namespace Demo1_Words
 {
     using System;
     using System.Collections.Generic;
@@ -7,11 +10,11 @@
 
     class WordSolverPoint : IGamePoint
     {
-        private WordOperator wordOperator;
+        private IWordOperator wordOperator;
 
-        public WordSolverPoint()
+        public WordSolverPoint(IWordOperator wordOperator)
         {
-            wordOperator = new WordOperator();
+            this.wordOperator = wordOperator;
         }
         public void Run()
         {
@@ -39,6 +42,10 @@
                     characters = CustomIO.ReadNewLine().Replace(" ", String.Empty);
                 }
             }
+        }
+        public bool IsApplicable(string input)
+        {
+            return input == UserInputConstants.WORD_SOLVER;
         }
     }
 }

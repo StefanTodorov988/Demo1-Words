@@ -1,4 +1,5 @@
 ﻿using System;
+using Demo1_Words.Constants;
 using Demo1_Words.Model;
 
 namespace Demo1_Words
@@ -9,6 +10,11 @@ namespace Demo1_Words
         {
             CustomIO.ClearInterface();
             Environment.Exit(0);
+        }
+
+        public bool IsApplicable(string input)
+        {
+            return input == UserInputConstants.EXIT;
         }
     }
 }

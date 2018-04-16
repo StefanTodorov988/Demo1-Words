@@ -1,5 +1,6 @@
 ﻿using System;
 using Demo1_Words.Commands;
+using Unity;
 
 namespace Demo1_Words
 {
@@ -8,9 +9,9 @@ namespace Demo1_Words
     {
         static void Main()
         {
-            Engine engine = new Engine();
+            IUnityContainer unityContainer = UnityLoader.LoadContainer();
+            Engine engine = unityContainer.Resolve<Engine>();
             engine.Start();
-           
         }
     }
 }

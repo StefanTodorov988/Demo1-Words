@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Demo1_Words.Commands.Interface;
 using Demo1_Words.Constants;
 using Demo1_Words.Core;

@@ -1,11 +1,14 @@
-﻿namespace Demo1_Words.Model
+﻿using Demo1_Words.Factory.Interface;
+using Demo1_Words.Model.Interface;
+using Unity;
+
+namespace Demo1_Words.Model
 {
-    class LevelFactory
+    class LevelFactory : ILevelFactory
     {
-        public Level createLever(int level)
+        public Level CreateLevel(string chosenLevel, IUnityContainer unityContainer)
         {
-            Level lever = new Level(level);
-            return lever;
+            return unityContainer.Resolve<Level>(chosenLevel);
         }
     }
 }

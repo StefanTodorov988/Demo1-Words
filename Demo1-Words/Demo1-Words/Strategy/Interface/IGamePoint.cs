@@ -3,5 +3,6 @@
     interface IGamePoint
     {
         void Run();
+        bool IsApplicable(string input);
     }
 }

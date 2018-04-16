@@ -1,13 +1,15 @@
-﻿namespace Demo1_Words.Core
+﻿using Demo1_Words.Core.Interface;
+
+namespace Demo1_Words.Core
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Text.RegularExpressions;
     using System.Linq;
-    public class WordOperator
+    public class WordOperator : IWordOperator
     {
-        private  List<string> allWords;
+        private List<string> allWords;
         private Dictionary<int, int> rangeDictionary;
         public WordOperator()
         {

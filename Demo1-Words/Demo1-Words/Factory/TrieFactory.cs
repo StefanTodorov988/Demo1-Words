@@ -1,10 +1,12 @@
-﻿namespace Demo1_Words.Factory
+﻿using Demo1_Words.Factory.Interface;
+
+namespace Demo1_Words.Factory
 {
     using System.Collections.Generic;
     using System.IO;
     using Model;
     using System.Linq;
-    class TrieFactory
+    class TrieFactory : ITrieFactory
     {
         public Trie CreateTrieFromDictionary()
         {

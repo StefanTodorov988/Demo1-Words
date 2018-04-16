@@ -1,16 +1,23 @@
-﻿namespace Demo1_Words.Core
+﻿using System.Collections.Generic;
+using Demo1_Words.Core.Interface;
+using Microsoft.Practices.Unity;
+using Unity;
+
+namespace Demo1_Words.Core
 {
     using System;
     using Factory;
     using Model;
-    public class Engine
-    {//generic strategy
+    public class Engine : IEngine
+    {
         private IGamePoint gamePoint;
+        private IUnityContainer unityContainer;
         private IGamePointFactory gamePointFactory;
-        public Engine()
+        public Engine(IUnityContainer unityContainer)
         {
-            gamePointFactory = new GamePointFactory();
             CustomIO.ConfigureSettings();
+            this.unityContainer = unityContainer;
+            gamePointFactory = unityContainer.Resolve<GamePointFactory>();
         }
         public void Start()
         {
