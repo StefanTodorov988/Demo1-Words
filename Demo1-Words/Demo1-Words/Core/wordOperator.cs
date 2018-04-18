@@ -1,32 +1,19 @@
-﻿using Demo1_Words.Core.Interface;
-
-namespace Demo1_Words.Core
+﻿namespace Demo1_Words.Core
 {
+    using IO.Interface;
+    using Interface;
+    using Constants;
     using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Text.RegularExpressions;
-    using System.Linq;
     public class WordOperator : IWordOperator
     {
-        private List<string> allWords;
-        private Dictionary<int, int> rangeDictionary;
-        public WordOperator()
+        private IWriter writer;
+        private WordsContainer wordsContainer;
+        public WordOperator(WordsContainer wordsContainer , IWriter writer)
         {
-            allWords = File.ReadAllLines("legitWords.txt").ToList();
-            rangeDictionary = new Dictionary<int, int>
-            {
-                {2,0},
-                {3,WordIndexConstants.RANGE_OF_WORD_OF_3CHARACTERS},
-                {4,WordIndexConstants.RANGE_OF_WORD_OF_4CHARACTERS},
-                {5,WordIndexConstants.RANGE_OF_WORD_OF_5CHARACTERS},
-                {6,WordIndexConstants.RANGE_OF_WORD_OF_6CHARACTERS},
-                {7,WordIndexConstants.RANGE_OF_WORD_OF_7CHARACTERS},
-                {8,WordIndexConstants.RANGE_OF_WORD_OF_8CHARACTERS},
-                {9,WordIndexConstants.RANGE_OF_WORD_OF_9CHARACTERS},
-                {10,WordIndexConstants.RANGE_OF_WORD_OF_10CHARACTERS},
-                {11,WordIndexConstants.RANGE_OF_WORD_OF_10_PLUS_CHARACTERS}
-            };
+            this.writer = writer;
+            this.wordsContainer = wordsContainer;
         }
         public bool AtemptValidation(string alphabet, string atempt)
         {
@@ -57,12 +44,12 @@ namespace Demo1_Words.Core
         {
             if (characters == String.Empty || characters.Length < 3)
             {
-                Console.WriteLine("Please enter at least 3 letters.");
+                writer.PrintOnNewLine("Please enter at least 3 letters.");
                 return false;
             }
             if(!(Regex.IsMatch(characters, @"^[a-zA-Z]+$")))
             {
-                Console.WriteLine("The resolver works only with letters.");
+                writer.PrintOnNewLine("The resolver works only with letters.");
                 return false;
             }
             return true;
@@ -93,7 +80,7 @@ namespace Demo1_Words.Core
             {
                 length = characters.Length;
             }
-            int range = rangeDictionary[length];
+            int range = wordsContainer.RangeDictionary[length];
             List<string> validWords = new List<string>();
             int[] alphabetArray = new int[26];
             for (int i = 0; i < characters.Length; i++)
@@ -103,7 +90,7 @@ namespace Demo1_Words.Core
             for (int i = 0; i < range; i++)
             {
                 bool isValid = true;
-                string currentWord = allWords[i];
+                string currentWord = wordsContainer.AllWords[i];
                 int[] temporaryArray = new int[26];
                 for (int j = 0; j < currentWord.Length; j++)
                 {
@@ -123,15 +110,15 @@ namespace Demo1_Words.Core
             }
             if (validWords.Count == 0)
             {
-                Console.WriteLine("No valid word");
+               writer.PrintOnNewLine("No valid word");
             }
             return validWords;
         }
         public string GivingRandomWordWithNLenght(int n)
         {
             Random r = new Random();
-            int randomIndex = r.Next(rangeDictionary[n-1],rangeDictionary[n]);
-            return allWords[randomIndex];
+            int randomIndex = r.Next(wordsContainer.RangeDictionary[n-1],wordsContainer.RangeDictionary[n]);
+            return wordsContainer.AllWords[randomIndex];
         }
     }
 }

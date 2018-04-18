@@ -1,26 +1,27 @@
-﻿using Demo1_Words.Constants;
-using Demo1_Words.Core.Interface;
-
-namespace Demo1_Words
+﻿namespace Demo1_Words
 {
+    using Constants;
+    using Core.Interface;
+    using IO.Interface;
     using System;
     using System.Collections.Generic;
     using Core;
-    using Model;
-
     class WordSolverPoint : IGamePoint
     {
         private IWordOperator wordOperator;
-
-        public WordSolverPoint(IWordOperator wordOperator)
+        private readonly IWriter writer;
+        private readonly IReader reader;
+        public WordSolverPoint(IWordOperator wordOperator ,  IWriter writer,IReader reader)
         {
             this.wordOperator = wordOperator;
+            this.writer = writer;
+            this.reader = reader;
         }
         public void Run()
         {
-            CustomIO.ClearInterface();
-            CustomIO.PrintOnNewLine(MenuMessages.resolverMenu);
-            string characters = CustomIO.ReadNewLine().Replace(" ", String.Empty).ToLower();
+           writer.ClearInterface();
+            writer.PrintOnNewLine(MenuMessages.resolverMenu);
+            string characters = reader.ReadNewLine().Replace(" ", String.Empty).ToLower();
             bool passed = true;
             while (passed)
             {
@@ -30,16 +31,16 @@ namespace Demo1_Words
                     List<string> solutions = wordOperator.FindingSoutions(characters);
                     if (!(solutions.Count == 0))
                     {
-                        CustomIO.PrintOnNewLine("Words you can build with these characters are:");
+                        writer.PrintOnNewLine(MenuMessages.solverMessage);
                         foreach (string solution in solutions)
                         {
-                            CustomIO.PrintOnNewLine(solution);
+                           writer.PrintOnNewLine(solution);
                         }
                     }
                 }
                 else
                 {
-                    characters = CustomIO.ReadNewLine().Replace(" ", String.Empty);
+                    characters = reader.ReadNewLine().Replace(" ", String.Empty);
                 }
             }
         }

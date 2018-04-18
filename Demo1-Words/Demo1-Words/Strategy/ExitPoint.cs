@@ -1,14 +1,19 @@
-﻿using System;
-using Demo1_Words.Constants;
-using Demo1_Words.Model;
-
-namespace Demo1_Words
+﻿namespace Demo1_Words
 {
+    using System;
+    using Constants;
+    using IO.Interface;
     class ExitPoint : IGamePoint
     {
+        private readonly IWriter writer;
+        public ExitPoint(IWriter writer)
+        {
+            this.writer = writer;
+
+        }
         public void Run()
         {
-            CustomIO.ClearInterface();
+            writer.ClearInterface();
             Environment.Exit(0);
         }
 

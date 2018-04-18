@@ -1,10 +1,8 @@
-﻿using System;
-using Demo1_Words.Model;
-
-namespace Demo1_Words.Factory.Interface
+﻿namespace Demo1_Words.Factory.Interface
 {
+    using Model.Interface;
     interface ITrieFactory
     {
-        Trie CreateTrieFromDictionary();
+        ITrie CreateTrieFromDictionary();
     }
 }

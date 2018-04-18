@@ -1,19 +1,24 @@
-﻿using Demo1_Words.Factory.Interface;
-
-namespace Demo1_Words.Factory
+﻿namespace Demo1_Words.Factory
 {
-    using System.Collections.Generic;
-    using System.IO;
+    using Constants;
+    using Interface;
+    using Model.Interface;
+    using Unity;
     using Model;
-    using System.Linq;
     class TrieFactory : ITrieFactory
     {
-        public Trie CreateTrieFromDictionary()
+        private IUnityContainer unityContainer;
+        private WordsContainer wordsContainer;
+        public TrieFactory(IUnityContainer unityContainer , WordsContainer wordsContainer)
         {
-            Trie trieOfAllWords = new Trie();
-            List<string> allWords;
-            allWords = File.ReadAllLines("legitWords.txt").ToList();
-            allWords.ForEach(x => trieOfAllWords.Insert(x));
+            this.wordsContainer = wordsContainer;
+            this.unityContainer = unityContainer;
+        }
+
+        public ITrie CreateTrieFromDictionary()
+        {
+            Trie trieOfAllWords = unityContainer.Resolve<Trie>();
+            wordsContainer.AllWords.ForEach(x => trieOfAllWords.Insert(x));
             return trieOfAllWords;
         }
     }

@@ -4,7 +4,8 @@
     {
         public static string mainMenu = "1. New game\r\n" +
                                         "2. Solver\r\n" +
-                                        "3. Exit";
+                                        "3. Rank list\r\n" +
+                                        "4. Exit";
 
         public static string levelsMenu = "Select level:\r\n" +
                                           "3. Word with 3 characters\r\n" +
@@ -20,5 +21,19 @@
         public static string resolverMenu = "Enter the characters you want to use:";
 
         public static string pickedCharacters = "Characters you got are: ";
+
+        public static string invalidInput = "Please enter a valid input.";
+
+        public static string wordsLeft = "Words left are:";
+
+        public static string wordsSolved = "You found all the words !!!";
+
+        public static string nameSetting = "Please enter username : ";
+
+        public static string solverMessage = "Words you can build with these characters are : ";
+
+        public static string nameAlreadyTaken = "Name already used , try another one :";
+
+        public static string finalScore = "You finished with : ";
     }
 }

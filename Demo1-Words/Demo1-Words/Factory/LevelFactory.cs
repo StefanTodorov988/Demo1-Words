@@ -1,14 +1,15 @@
-﻿using Demo1_Words.Factory.Interface;
-using Demo1_Words.Model.Interface;
-using Unity;
-
-namespace Demo1_Words.Model
+﻿namespace Demo1_Words.Model
 {
+    using Core;
+    using Factory;
+    using Factory.Interface;
+    using IO;
+    using Unity;
     class LevelFactory : ILevelFactory
     {
-        public Level CreateLevel(string chosenLevel, IUnityContainer unityContainer)
+        public Level CreateLevel(string chosenLevel, IUnityContainer unityContainer , IPlayer player)
         {
-            return unityContainer.Resolve<Level>(chosenLevel);
+            return new Level( chosenLevel, player, unityContainer.Resolve<WordOperator>(), unityContainer.Resolve<TrieFactory>(), unityContainer.Resolve<Writer>(), unityContainer.Resolve<Reader>());
         }
     }
 }

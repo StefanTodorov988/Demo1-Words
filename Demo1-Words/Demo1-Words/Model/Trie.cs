@@ -1,7 +1,6 @@
-﻿using Demo1_Words.Model.Interface;
-
-namespace Demo1_Words.Model
+﻿namespace Demo1_Words.Model
 {
+    using Interface;
     using System.Collections.Generic;
     public class Trie : ITrie
     {

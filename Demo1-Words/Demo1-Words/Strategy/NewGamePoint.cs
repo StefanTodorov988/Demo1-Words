@@ -1,31 +1,37 @@
-﻿using System;
-using Demo1_Words.Constants;
-using Demo1_Words.Core;
-using Demo1_Words.Factory.Interface;
-using Demo1_Words.Model;
-using Demo1_Words.Model.Interface;
-using Unity;
-
-namespace Demo1_Words
+﻿namespace Demo1_Words
 {
-    public class NewGamePoint : IGamePoint
+    using Constants;
+    using Core;
+    using Factory.Interface;
+    using IO.Interface;
+    using Model;
+    using Model.Interface;
+    using Unity;
+     class NewGamePoint : IGamePoint
     {
         private ILevelFactory levelFactory;
         private IUnityContainer unityContainer;
         private ILevel level;
-
-        public NewGamePoint(IUnityContainer unityContainer)
+        private IWriter writer;
+        private IReader reader;
+        private IPlayer player;
+        public NewGamePoint(IUnityContainer unityContainer,  IWriter writer , IReader reader ,IPlayer player, ILevelFactory levelFactory)
         {
+            this.reader = reader;
+            this.writer = writer;
             this.unityContainer = unityContainer;
-            levelFactory = unityContainer.Resolve<LevelFactory>();
+            this.levelFactory = levelFactory;
+            this.player = player;
         }
         public void Run()
         {
-            CustomIO.ClearInterface();
-            CustomIO.PrintOnNewLine(MenuMessages.levelsMenu);
-            string chosenLevel = CustomIO.ReadNewLine();
-            level = levelFactory.CreateLevel(chosenLevel , unityContainer);
+            player.InitializePlayer();
+            writer.ClearInterface();
+            writer.PrintOnNewLine(MenuMessages.levelsMenu);
+            string chosenLevel = reader.ReadNewLine();
+            level = levelFactory.CreateLevel(chosenLevel , unityContainer, player);
             level.RunLevel();
+            player.SaveScore();
         }
 
         public bool IsApplicable(string input)

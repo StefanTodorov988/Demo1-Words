@@ -1,15 +1,15 @@
-﻿using Unity;
-
-namespace Demo1_Words.Factory
+﻿namespace Demo1_Words.Factory
 {
-    using System.Collections.Generic;
     using System.Linq;
+    using Unity;
+    using Interface;
+
     class GamePointFactory : IGamePointFactory
     {
         private IGamePoint[] strategies;
         private IUnityContainer unityContainer;
 
-        public GamePointFactory(IGamePoint[] strategies , IUnityContainer unityContainer)
+        public GamePointFactory(IGamePoint[] strategies, IUnityContainer unityContainer)
         {
             this.unityContainer = unityContainer;
             this.strategies = strategies;
@@ -17,7 +17,7 @@ namespace Demo1_Words.Factory
 
         public IGamePoint CreateGamePoint(string input)
         {
-          return strategies.FirstOrDefault(strategie => strategie.IsApplicable(input)) ?? new ExitPoint();
+            return strategies.FirstOrDefault(strategie => strategie.IsApplicable(input)) ?? unityContainer.Resolve<ExitPoint>();
         }
     }
 }

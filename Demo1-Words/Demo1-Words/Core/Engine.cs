@@ -1,28 +1,26 @@
-﻿using System.Collections.Generic;
-using Demo1_Words.Core.Interface;
-using Microsoft.Practices.Unity;
-using Unity;
-
-namespace Demo1_Words.Core
+﻿namespace Demo1_Words.Core
 {
-    using System;
-    using Factory;
+    using Factory.Interface;
+    using Interface;
+    using IO.Interface;
     using Model;
-    public class Engine : IEngine
+     class Engine : IEngine
     {
         private IGamePoint gamePoint;
-        private IUnityContainer unityContainer;
+        private IWriter writer;
+        private IReader reader;
         private IGamePointFactory gamePointFactory;
-        public Engine(IUnityContainer unityContainer)
+        public Engine(IWriter writer , IReader reader , IGamePointFactory gamePointFactory)
         {
+            this.writer = writer;
+            this.reader = reader;
             CustomIO.ConfigureSettings();
-            this.unityContainer = unityContainer;
-            gamePointFactory = unityContainer.Resolve<GamePointFactory>();
+            this.gamePointFactory = gamePointFactory;
         }
         public void Start()
         {
-            Console.WriteLine(MenuMessages.mainMenu);
-            string input = Console.ReadLine();
+            writer.PrintOnNewLine(MenuMessages.mainMenu);
+            string input = reader.ReadNewLine();
             gamePoint = gamePointFactory.CreateGamePoint(input);
             gamePoint.Run();
         }

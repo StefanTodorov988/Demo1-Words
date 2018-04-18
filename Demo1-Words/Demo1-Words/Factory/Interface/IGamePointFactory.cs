@@ -1,4 +1,4 @@
-﻿namespace Demo1_Words.Factory
+﻿namespace Demo1_Words.Factory.Interface
 {
     interface IGamePointFactory
     {
