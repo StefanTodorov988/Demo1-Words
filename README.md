@@ -1,1 +1,1 @@
-First demo in softserve academy , based on trie data structure and sorting algotihms. 
+First demo in softserve academy , with trie data structure and sorting algotihms. The app is console simulator of the game Word Snack
